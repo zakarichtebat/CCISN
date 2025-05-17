@@ -13,11 +13,16 @@ export class UserController {
     schema: {
       type: 'object',
       properties: {
-        name: { type: 'string', example: 'John Doe' },
+        nom: { type: 'string', example: 'Doe' },
+        prenom: { type: 'string', example: 'John' },
         email: { type: 'string', example: 'john@example.com' },
-        password: { type: 'string', example: 'password123' }
+        motDePasse: { type: 'string', example: 'password123' },
+        numRegistreCommerce: { type: 'string', example: 'RC123456' },
+        secteurActivite: { type: 'string', example: 'Informatique' },
+        telephone: { type: 'string', example: '+212 6XX-XXXXXX' },
+        adresse: { type: 'string', example: '123 Rue Example, Ville' }
       },
-      required: ['name', 'email', 'password']
+      required: ['nom', 'prenom', 'email', 'motDePasse', 'numRegistreCommerce', 'secteurActivite', 'telephone', 'adresse']
     }
   })
   @ApiResponse({ 
@@ -27,13 +32,27 @@ export class UserController {
       type: 'object',
       properties: {
         id: { type: 'number', example: 1 },
-        name: { type: 'string', example: 'John Doe' },
+        nom: { type: 'string', example: 'Doe' },
+        prenom: { type: 'string', example: 'John' },
         email: { type: 'string', example: 'john@example.com' },
+        numRegistreCommerce: { type: 'string', example: 'RC123456' },
+        secteurActivite: { type: 'string', example: 'Informatique' },
+        telephone: { type: 'string', example: '+212 6XX-XXXXXX' },
+        adresse: { type: 'string', example: '123 Rue Example, Ville' },
         createdAt: { type: 'string', example: '2024-05-17T20:00:00.000Z' }
       }
     }
   })
-  create(@Body() body: { name: string; email: string; password: string }) {
+  create(@Body() body: {
+    nom: string;
+    prenom: string;
+    email: string;
+    motDePasse: string;
+    numRegistreCommerce: string;
+    secteurActivite: string;
+    telephone: string;
+    adresse: string;
+  }) {
     return this.userService.create(body);
   }
 
@@ -57,9 +76,14 @@ export class UserController {
     schema: {
       type: 'object',
       properties: {
-        name: { type: 'string', example: 'John Doe Updated' },
+        nom: { type: 'string', example: 'Doe Updated' },
+        prenom: { type: 'string', example: 'John Updated' },
         email: { type: 'string', example: 'john.updated@example.com' },
-        password: { type: 'string', example: 'newpassword123' }
+        motDePasse: { type: 'string', example: 'newpassword123' },
+        numRegistreCommerce: { type: 'string', example: 'RC123456' },
+        secteurActivite: { type: 'string', example: 'Informatique' },
+        telephone: { type: 'string', example: '+212 6XX-XXXXXX' },
+        adresse: { type: 'string', example: '123 Rue Example, Ville' }
       }
     }
   })
@@ -70,13 +94,27 @@ export class UserController {
       type: 'object',
       properties: {
         id: { type: 'number', example: 1 },
-        name: { type: 'string', example: 'John Doe Updated' },
+        nom: { type: 'string', example: 'Doe Updated' },
+        prenom: { type: 'string', example: 'John Updated' },
         email: { type: 'string', example: 'john.updated@example.com' },
+        numRegistreCommerce: { type: 'string', example: 'RC123456' },
+        secteurActivite: { type: 'string', example: 'Informatique' },
+        telephone: { type: 'string', example: '+212 6XX-XXXXXX' },
+        adresse: { type: 'string', example: '123 Rue Example, Ville' },
         createdAt: { type: 'string', example: '2024-05-17T20:00:00.000Z' }
       }
     }
   })
-  update(@Param('id') id: string, @Body() body: { name?: string; email?: string; password?: string }) {
+  update(@Param('id') id: string, @Body() body: {
+    nom?: string;
+    prenom?: string;
+    email?: string;
+    motDePasse?: string;
+    numRegistreCommerce?: string;
+    secteurActivite?: string;
+    telephone?: string;
+    adresse?: string;
+  }) {
     return this.userService.update(+id, body);
   }
 
